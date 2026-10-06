@@ -34,7 +34,7 @@ class VillageHeadDashboardController extends Controller
         $totalRealization = $village->getTotalExpendituresForYear($activeYear);
         $totalReceipts = $village->getTotalReceiptsForYear($activeYear);
         $totalExpenditures = $totalRealization;
-        // $remainingBudget = max(0, $totalBudget - $totalRealization);
+        // $remainingBudget = max(0, $totalBudget - $totalRealization); 
         $remainingBudget = max(0, $totalBudget - $totalRealization);
         $absorptionRate = $totalBudget > 0 ? round(($totalRealization / $totalBudget) * 100, 1) : 0;
 
