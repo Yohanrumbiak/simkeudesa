@@ -4,7 +4,7 @@ Project ini adalah project SIMKEDES (Sistem Informasi Manajemen Keuangan Desa), 
 1. Yohan Rumbiak 
 2. Yosua Krey 
 
-SIMKEDES ini di bagun mengunakan Framework Laravel 13 atau yang terbaru saat ini (2026) dengan rincian teknologi sebagai berikut:
+SIMKEDES ini di bagun mengunakan Framework Laravel 13 atau yang terbaru saat ini (2026), dengan rincian teknologi sebagai berikut:
 - Framework Laravel 13 
 - PHP v8.3.35
 - Composer 
@@ -12,7 +12,6 @@ SIMKEDES ini di bagun mengunakan Framework Laravel 13 atau yang terbaru saat ini
 - Database SQL
 - Server local Laragon
 - Version control Git dan Github 
-==========================================
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
