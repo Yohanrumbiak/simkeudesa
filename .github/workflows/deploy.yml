@@ -3,7 +3,8 @@ name: Deploy Keuangan Desa to InfinityFree
 on:
   push:
     branches:
-      - main # Ubah ke 'master' jika nama branch utama kamu 'master'
+      - main # Sesuaikan jika branch kamu 'master'
+  workflow_dispatch: # <--- Tambahkan baris ini
 
 jobs:
   web-deploy:
