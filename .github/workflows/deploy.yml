@@ -1,23 +1,46 @@
-name: Deploy Keuangan Desa to InfinityFree
+name: Deploy Website to InfinityFree
 
 on:
   push:
     branches:
-      - main # Sesuaikan jika branch kamu 'master'
-  workflow_dispatch: # <--- Tambahkan baris ini
+      - master
 
 jobs:
   web-deploy:
-    name: 🎉 Deploying
+    name: Deploying to Server
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v4
+    - name: Get latest code
+      uses: actions/checkout@v3
 
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+    # LANGKAH 1: Setup Node.js & Compile Aset Vite (Perbaikan Error Manifest)
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install NPM & Build Assets
+      run: |
+        npm install
+        npm run build
+
+    # LANGKAH 2: Set up PHP Environment
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, xml, ctype, iconv, json, pdo, pdo_mysql
+        coverage: none
+
+    # LANGKAH 3: Jalankan Composer Install
+    - name: Install Dependencies (Composer)
+      run: composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
+
+    # LANGKAH 4: Sync semua file ke FTP InfinityFree
+    - name: Sync files to FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: ./keuangan-desa.infinityfreeapp.com/htdocs/
+        server-dir: ./htdocs/
