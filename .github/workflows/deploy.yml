@@ -1,0 +1,23 @@
+name: Deploy Keuangan Desa to InfinityFree
+
+on:
+  push:
+    branches:
+      - main # Sesuaikan jika branch kamu 'master'
+  workflow_dispatch: # <--- Tambahkan baris ini
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploying
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: ./keuangan-desa.infinityfreeapp.com/htdocs/
